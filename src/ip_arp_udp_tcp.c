@@ -396,6 +396,14 @@ void make_echo_reply_from_request(uint8_t *buf,uint16_t len)
   enc28j60PacketSend(len,buf);
 }
 
+uint16_t get_udp_data_len(uint8_t* buf)
+{
+  uint16_t ip_len = (buf[IP_TOTLEN_H_P]<<8)|(buf[IP_TOTLEN_L_P]);
+  if (ip_len <= IP_HEADER_LEN + 8) return 0;
+  
+  return ip_len - IP_HEADER_LEN - 8;
+}
+
 // you can send a max of 220 bytes of data
 void make_udp_reply_from_request(uint8_t *buf,char *data,uint16_t datalen,uint16_t port)
 {

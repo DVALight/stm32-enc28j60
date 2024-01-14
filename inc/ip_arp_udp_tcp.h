@@ -31,7 +31,6 @@ uint8_t eth_type_is_arp_req(uint8_t *buf);
 
 void make_udp_reply_from_request(uint8_t *buf,char *data,uint16_t datalen,uint16_t port);
 void make_echo_reply_from_request(uint8_t *buf,uint16_t len);
-
 void make_arp_answer_from_request(uint8_t *buf);
 void make_tcp_synack_from_syn(uint8_t *buf);
 void init_len_info(uint8_t *buf);
@@ -47,6 +46,7 @@ uint16_t checksum(uint8_t *buf, uint16_t len,uint8_t type);
 
 // for a UDP server:
 uint8_t eth_type_is_ip_and_my_ip(uint8_t *buf,uint16_t len);
+uint16_t get_udp_data_len(uint8_t* buf);
 void make_udp_reply_from_request(uint8_t *buf,char *data,uint16_t datalen,uint16_t port);
 
 // return 0 to just continue in the packet loop and return the position 
